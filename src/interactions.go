@@ -9,8 +9,11 @@
 
 package hla
 
-// Service for federation management
-type Federation interface {
-	ConnectAndJoin(connectionString string, federateName string, federationName string, fomFile string, siteId uint16, applicationId uint16) bool
-	UnjoinAndDisconnect() bool
+// Service for interactions management
+type Interactions interface {
+	PublishInteractionClass(className string)
+
+	SubscribeInteractionClass(className string, federate *InteractionReceiver)
+
+	SendInteraction(className string, parametersValue map[string][]byte, time uint64)
 }

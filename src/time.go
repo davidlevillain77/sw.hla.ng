@@ -9,8 +9,17 @@
 
 package hla
 
-// Service for federation management
-type Federation interface {
-	ConnectAndJoin(connectionString string, federateName string, federationName string, fomFile string, siteId uint16, applicationId uint16) bool
-	UnjoinAndDisconnect() bool
+// Service for objects management
+type Time interface {
+	SetRegulating(isRegulating bool)
+
+	SetConstrained(isConstrained bool)
+
+	ModifyLookahead(lookahead uint64)
+
+	TimeAdvanceRequest(timeInMs uint64, federate *TimeManaged)
+}
+
+type TimeManaged interface {
+	TimeAdvanceGranted(timeInMs uint64)
 }
